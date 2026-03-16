@@ -1,13 +1,17 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import { ThemeProvider } from '@/components/ThemeProvider';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import type { Metadata } from "next";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Alex Johnson | Full Stack Developer',
+  title: "Launchpad — Build Faster, Ship Smarter",
   description:
-    'Personal portfolio of Alex Johnson — Full Stack Developer specializing in React, Node.js, and cloud technologies.',
+    "Launchpad is the modern platform for teams who want to build, iterate, and ship products faster than ever before.",
+  keywords: ["nextjs", "landing page", "saas", "platform"],
+  openGraph: {
+    title: "Launchpad — Build Faster, Ship Smarter",
+    description:
+      "Launchpad is the modern platform for teams who want to build, iterate, and ship products faster than ever before.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -16,7 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -25,17 +29,11 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="font-sans antialiased bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
-        <ThemeProvider>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

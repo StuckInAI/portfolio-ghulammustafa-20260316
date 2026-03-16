@@ -1,17 +1,17 @@
-import Hero from '@/components/Hero';
-import About from '@/components/About';
-import ProjectsSection from '@/components/ProjectsSection';
-import ExperienceSection from '@/components/ExperienceSection';
-import ContactSection from '@/components/ContactSection';
+import Navbar from "@/components/Navbar/Navbar";
+import Hero from "@/components/Hero/Hero";
+import Features from "@/components/Features/Features";
+import Testimonials from "@/components/Testimonials/Testimonials";
+import Footer from "@/components/Footer/Footer";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div>
+    <main>
+      <Navbar />
       <Hero />
-      <About />
-      <ProjectsSection />
-      <ExperienceSection />
-      <ContactSection />
-    </div>
+      <Features />
+      <Testimonials />
+      <Footer />
+    </main>
   );
 }
