@@ -1,13 +1,8 @@
-import 'reflect-metadata';
-import { DataSource } from 'typeorm';
-import { Project } from '@/entities/Project';
-import { Experience } from '@/entities/Experience';
-import { ContactMessage } from '@/entities/ContactMessage';
-import path from 'path';
-
-const dbPath = process.env.DATABASE_PATH
-  ? path.resolve(process.cwd(), process.env.DATABASE_PATH)
-  : path.resolve(process.cwd(), 'database.sqlite');
+import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { Todo } from "@/entities/Todo";
+import * as fs from "fs";
+import * as path from "path";
 
 let dataSource: DataSource | null = null;
 
@@ -16,12 +11,22 @@ export async function getDataSource(): Promise<DataSource> {
     return dataSource;
   }
 
+  const dbPath = process.env.DATABASE_PATH || "./data/todos.db";
+  const resolvedPath = path.resolve(process.cwd(), dbPath);
+  const dbDir = path.dirname(resolvedPath);
+
+  if (!fs.existsSync(dbDir)) {
+    fs.mkdirSync(dbDir, { recursive: true });
+  }
+
   dataSource = new DataSource({
-    type: 'better-sqlite3',
-    database: dbPath,
-    entities: [Project, Experience, ContactMessage],
+    type: "better-sqlite3",
+    database: resolvedPath,
     synchronize: true,
     logging: false,
+    entities: [Todo],
+    migrations: [],
+    subscribers: [],
   });
 
   await dataSource.initialize();

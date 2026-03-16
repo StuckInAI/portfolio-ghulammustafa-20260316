@@ -1,39 +1,22 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
+const inter = Inter({ subsets: ["latin"] });
+
 export const metadata: Metadata = {
-  title: "Launchpad — Build Faster, Ship Smarter",
-  description:
-    "Launchpad is the modern platform for teams who want to build, iterate, and ship products faster than ever before.",
-  keywords: ["nextjs", "landing page", "saas", "platform"],
-  openGraph: {
-    title: "Launchpad — Build Faster, Ship Smarter",
-    description:
-      "Launchpad is the modern platform for teams who want to build, iterate, and ship products faster than ever before.",
-    type: "website",
-  },
+  title: "Todo App",
+  description: "A full-stack todo application built with Next.js and TypeORM",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body>{children}</body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
